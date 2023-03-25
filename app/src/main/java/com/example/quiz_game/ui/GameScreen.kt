@@ -33,7 +33,7 @@ fun Quiz_Game() {
             Modifier
                 .fillMaxWidth()
                 .background(color = Color(0xFF4A148C))
-        ){
+        ) {
             Text(
                 text = "Quiz Game",
                 fontSize = 20.sp,
@@ -61,7 +61,9 @@ fun Quiz_Game() {
         Spacer(modifier = Modifier.height(100.dp))
         Button(
             onClick = { /*TODO*/ },
-            modifier = Modifier.fillMaxWidth().padding(10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
         ) {
             Text(
                 text = "ANS1",
@@ -70,7 +72,9 @@ fun Quiz_Game() {
         }
         Button(
             onClick = { /*TODO*/ },
-            modifier = Modifier.fillMaxWidth().padding(10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
         ) {
             Text(
                 text = "ANS2",
@@ -79,7 +83,9 @@ fun Quiz_Game() {
         }
         Button(
             onClick = { /*TODO*/ },
-            modifier = Modifier.fillMaxWidth().padding(10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
         ) {
             Text(
                 text = "ANS3",
@@ -88,19 +94,31 @@ fun Quiz_Game() {
         }
         Button(
             onClick = { /*TODO*/ },
-            modifier = Modifier.fillMaxWidth().padding(10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
         ) {
             Text(
                 text = "ANS4",
                 fontSize = 20.sp
             )
         }
-        Spacer(modifier = Modifier.height(50.dp))
-        Button(onClick = { /*TODO*/ }) {
-            Text(
-                text = "NEXT",
-                fontSize = 20.sp
-            )
+        Spacer(modifier = Modifier.height(45.dp))
+
+        Row() {
+            Button(onClick = { /*TODO*/ }) {
+                Text(
+                    text = "NEXT",
+                    fontSize = 20.sp
+                )
+            }
+            Spacer(modifier = Modifier.width(50.dp))
+            Button(onClick = { /*TODO*/ }) {
+                Text(
+                    text = "RESET",
+                    fontSize = 20.sp
+                )
+            }
         }
     }
 }
