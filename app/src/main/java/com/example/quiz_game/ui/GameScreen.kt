@@ -19,10 +19,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.quiz_game.data.allAnswer
 import com.example.quiz_game.ui.theme.Quiz_GameTheme
 
 @Composable
-fun Quiz_Game() {
+fun GameScreen(
+//    modifier: Modifier = Modifier,
+//    gameViewModel: GameViewModel = viewModel()
+) {
+//    val gameUiState by gameViewModel.uiState.collectAsState()
+
     Column(
         Modifier
             .fillMaxSize()
@@ -60,13 +66,13 @@ fun Quiz_Game() {
         )
         Spacer(modifier = Modifier.height(100.dp))
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {  },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp)
         ) {
             Text(
-                text = "ANS1",
+                text = allAnswer[0][0],
                 fontSize = 20.sp
             )
         }
@@ -77,7 +83,7 @@ fun Quiz_Game() {
                 .padding(10.dp)
         ) {
             Text(
-                text = "ANS2",
+                text = allAnswer[0][1],
                 fontSize = 20.sp
             )
         }
@@ -88,7 +94,7 @@ fun Quiz_Game() {
                 .padding(10.dp)
         ) {
             Text(
-                text = "ANS3",
+                text = allAnswer[0][2],
                 fontSize = 20.sp
             )
         }
@@ -99,7 +105,7 @@ fun Quiz_Game() {
                 .padding(10.dp)
         ) {
             Text(
-                text = "ANS4",
+                text = allAnswer[0][3],
                 fontSize = 20.sp
             )
         }

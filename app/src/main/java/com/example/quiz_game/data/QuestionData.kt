@@ -1,5 +1,8 @@
 package com.example.quiz_game.data
 
+const val MAX_Questions = 10
+const val SCORE_INCREASE = 20
+
 val allQuestion = listOf(
     "What can you catch but not throw?",
     "What has a face and two hands but no arms?",
