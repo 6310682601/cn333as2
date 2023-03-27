@@ -34,6 +34,7 @@ class GameViewModel : ViewModel() {
         } else {
             return question[quizIndex]
         }
+
     }
 
     fun checkAnswer( input: String) {
