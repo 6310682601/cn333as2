@@ -61,8 +61,6 @@ class GameViewModel : ViewModel() {
                 currentState.copy(isWrong = true)
             }
         }
-        // Reset user guess
-        updateUserGuess("")
     }
 
     private fun updateGameState(updatedScore: Int) {
@@ -98,25 +96,31 @@ class GameViewModel : ViewModel() {
 //        val answers = allAnswer[index]
 //        return Pair(randomQuestion, answers)
 //    }
+//    var index = (0..9).random()
+//    fun pickRandomQuestion(): List<String> {
+//
+//        var randomQuestion = allQuestion[index]
+//        val answers = allAnswer[index]
+//        var out = listOf(answers[0], answers[1], answers[2], answers[3])
+//        out.shuffled()
+//        return listOf(randomQuestion, out[0], out[1], out[2], out[3])
+//    }
+
     fun pickRandomQuestion(): List<String> {
-        var index = Random.nextInt(0,9)
-//        if (index in usedQuestion){
-//            index = Random.nextInt(0,9)
-//            pickRandomQuestion()
-//        }
-//        else{
-//            usedQuestion.add(index)
-//        }
+        // Pick a random index for the question
+        val randomIndex = (0 until 9).random()
 
-        var randomQuestion = allQuestion[index]
-        val answers = allAnswer[index].shuffled()
-        val ans1 = answers[0]
-        val ans2 = answers[1]
-        val ans3 = answers[2]
-        val ans4 = answers[3]
-        val output = listOf(randomQuestion, ans1, ans2, ans3, ans4)
+        // Get the corresponding question and answer list
+        val question = allQuestion[randomIndex]
+        val answers = allAnswer[randomIndex]
 
-        return output
+        // Shuffle the answers
+        val shuffledAnswers = answers.shuffled()
+        val questionAndAnswers = mutableListOf<String>()
+        questionAndAnswers.add(question)
+        questionAndAnswers.addAll(shuffledAnswers)
+
+        // Return the list of question and shuffled answers
+        return questionAndAnswers
     }
-
 }
