@@ -19,13 +19,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
 import com.example.quiz_game.data.allAnswer
 import com.example.quiz_game.ui.theme.Quiz_GameTheme
 
 @Composable
 fun GameScreen(
-//    modifier: Modifier = Modifier,
-//    gameViewModel: GameViewModel = viewModel()
+    modifier: Modifier = Modifier,
+    gameViewModel: GameViewModel,
 ) {
 //    val gameUiState by gameViewModel.uiState.collectAsState()
 
@@ -61,7 +62,7 @@ fun GameScreen(
         }
         Spacer(modifier = Modifier.height(200.dp))
         Text(
-            text = "QUIZ",
+            text = gameViewModel.pickRandomQuestion()[0],
             fontSize = 20.sp
         )
         Spacer(modifier = Modifier.height(100.dp))
@@ -72,7 +73,7 @@ fun GameScreen(
                 .padding(10.dp)
         ) {
             Text(
-                text = allAnswer[0][0],
+                text = gameViewModel.pickRandomQuestion()[1],
                 fontSize = 20.sp
             )
         }
@@ -83,7 +84,7 @@ fun GameScreen(
                 .padding(10.dp)
         ) {
             Text(
-                text = allAnswer[0][1],
+                text = gameViewModel.pickRandomQuestion()[2],
                 fontSize = 20.sp
             )
         }
@@ -94,7 +95,7 @@ fun GameScreen(
                 .padding(10.dp)
         ) {
             Text(
-                text = allAnswer[0][2],
+                text = gameViewModel.pickRandomQuestion()[3],
                 fontSize = 20.sp
             )
         }
@@ -105,7 +106,7 @@ fun GameScreen(
                 .padding(10.dp)
         ) {
             Text(
-                text = allAnswer[0][3],
+                text = gameViewModel.pickRandomQuestion()[4],
                 fontSize = 20.sp
             )
         }
@@ -133,5 +134,6 @@ fun GameScreen(
 @Composable
 fun GreetingPreview() {
     Quiz_GameTheme {
+
     }
 }

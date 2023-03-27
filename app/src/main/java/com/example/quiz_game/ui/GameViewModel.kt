@@ -13,9 +13,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import java.lang.Math.random
+import kotlin.random.Random
+import kotlin.random.Random.Default.nextInt
+
 
 class GameViewModel : ViewModel() {
     // Game UI state
+//    private val Question = Question()
+//    var currentQuestionIndex = Question.question.shuffled()
+//    var index = Random.nextInt(0,9)
     private val _uiState = MutableStateFlow(GameUiState())
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
 
@@ -23,7 +30,7 @@ class GameViewModel : ViewModel() {
         private set
 
     // Set of words used in the game
-    private var usedQuestion: MutableSet<String> = mutableSetOf()
+    private var usedQuestion: MutableSet<Int> = mutableSetOf()
     private lateinit var currentQuestion: String
 
     init {
@@ -31,7 +38,7 @@ class GameViewModel : ViewModel() {
     }
     fun resetGame() {
         usedQuestion.clear()
-        _uiState.value = GameUiState(currentScrambledQuestion = pickRandomQuestion())
+//        _uiState.value = GameUiState(currentScrambledQuestion = pickRandomQuestion())
     }
 
     fun updateUserGuess(guessedWord: String){
@@ -43,10 +50,10 @@ class GameViewModel : ViewModel() {
      * Increases the score accordingly.
      */
     fun checkAns() {
-        val currentQuestionIndex = allQuestion.indexOf(_uiState.value.currentScrambledQuestion)
-        val correctAnswers = trueAnswer[currentQuestionIndex]
 
-        if (userGuess in correctAnswers) {
+//        val correctAnswers = trueAnswer[currentQuestionIndex]
+
+        if (userGuess in trueAnswer) {
             val updatedScore = _uiState.value.score.plus(SCORE_INCREASE)
             updateGameState(updatedScore)
         } else {
@@ -72,7 +79,7 @@ class GameViewModel : ViewModel() {
             _uiState.update { currentState ->
                 currentState.copy(
                     isWrong = false,
-                    currentScrambledQuestion = pickRandomQuestion(),
+//                    currentScrambledQuestion = pickRandomQuestion(),
                     currentQuestionCount = currentState.currentQuestionCount.inc(),
                     score = updatedScore
                 )
@@ -81,14 +88,35 @@ class GameViewModel : ViewModel() {
     }
 
 
-    private fun pickRandomQuestion(): String {
-        var randomQuestion = allQuestion.random()
-        while (usedQuestion.contains(randomQuestion)) {
-            randomQuestion = allQuestion.random()
-        }
-        usedQuestion.add(randomQuestion)
-        val index = allQuestion.indexOf(randomQuestion)
-        return randomQuestion
+//    fun pickRandomQuestion(): Pair<String, List<String>> {
+//        var randomQuestion = allQuestion.random()
+//        while (usedQuestion.contains(randomQuestion)) {
+//            randomQuestion = allQuestion.random()
+//        }
+//        usedQuestion.add(randomQuestion)
+//        val index = allQuestion.indexOf(randomQuestion)
+//        val answers = allAnswer[index]
+//        return Pair(randomQuestion, answers)
+//    }
+    fun pickRandomQuestion(): List<String> {
+        var index = Random.nextInt(0,9)
+//        if (index in usedQuestion){
+//            index = Random.nextInt(0,9)
+//            pickRandomQuestion()
+//        }
+//        else{
+//            usedQuestion.add(index)
+//        }
+
+        var randomQuestion = allQuestion[index]
+        val answers = allAnswer[index].shuffled()
+        val ans1 = answers[0]
+        val ans2 = answers[1]
+        val ans3 = answers[2]
+        val ans4 = answers[3]
+        val output = listOf(randomQuestion, ans1, ans2, ans3, ans4)
+
+        return output
     }
 
 }
