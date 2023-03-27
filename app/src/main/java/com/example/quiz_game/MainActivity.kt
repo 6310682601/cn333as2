@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.example.quiz_game.ui.Quiz_Game
+import com.example.quiz_game.ui.GameScreen
+import com.example.quiz_game.ui.GameScreen
+import com.example.quiz_game.ui.GameViewModel
 import com.example.quiz_game.ui.theme.Quiz_GameTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Quiz_Game()
+                    GameScreen(gameViewModel = GameViewModel())
                 }
             }
         }

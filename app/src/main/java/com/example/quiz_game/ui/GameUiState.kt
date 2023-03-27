@@ -5,7 +5,6 @@ import com.example.quiz_game.data.Question
 data class GameUiState(
     val currentQuestion: Question,
     val choice: List<String>,
-    val score: Int = 0,
-    val indexQuiz: Int
+    val score: Int,
+    val quizIndex: Int,
 )
-
