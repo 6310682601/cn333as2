@@ -1,10 +1,11 @@
 package com.example.quiz_game.ui
 
+import com.example.quiz_game.data.Question
+
 data class GameUiState(
-    val currentScrambledQuestion: String = "",
-    val currentQuestionCount: Int = 1,
-    val score: Int = 0,
-    val isWrong: Boolean = false,
-    val isGameOver: Boolean = false
+    val currentQuestion: Question,
+    val choice: List<String>,
+    val score: Int,
+    val quizIndex: Int,
 )
 
