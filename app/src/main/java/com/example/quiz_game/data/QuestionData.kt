@@ -67,5 +67,17 @@ val questions = listOf(
         "No sooner spoken than broken. What is it?",
         listOf("silence", "friendship", "glass", "news"),
         "silence"
+    ),
+
+    Question(
+        "1 + 1 = ?",
+        listOf("1","2","3","11"),
+        "2"
+    ),
+
+    Question(
+        "100 * 1000 = ?",
+        listOf("1100","100000","11111","11"),
+        "100000"
     )
 )

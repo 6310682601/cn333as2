@@ -1,5 +1,6 @@
 package com.example.quiz_game.ui
 
+import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,14 +11,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -70,7 +75,9 @@ fun GameScreen(
         }
         Spacer(modifier = Modifier.height(100.dp))
         Text(
-            modifier = Modifier.fillMaxWidth().padding(25.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(25.dp),
             text = question.question,
             fontSize = 20.sp
         )
@@ -125,23 +132,45 @@ fun GameScreen(
         }
         Spacer(modifier = Modifier.height(45.dp))
 
-        Row() {
-            Button(onClick = {gameViewModel.getQuestion()}) {
-                Text(
-                    text = "NEXT",
-                    fontSize = 20.sp
-                )
-            }
-            Spacer(modifier = Modifier.width(50.dp))
-            Button(onClick = {gameViewModel.reset()}) {
-                Text(
-                    text = "RESET",
-                    fontSize = 20.sp
-                )
-            }
+        Button(onClick = {gameViewModel.reset(true)}) {
+            Text(
+                text = "RESET",
+                fontSize = 20.sp
+            )
         }
+        if (gameUiState.quizIndex == 11) {
+            FinalScoreDialog(
+                score = gameUiState.score,
+                onPlayAgain = { gameViewModel.reset(true) }
+            )
+        }
+
     }
 }
+
+@Composable
+fun FinalScoreDialog(
+    score: Int,
+    onPlayAgain: () -> Unit,
+) {
+    val activity = (LocalContext.current as Activity)
+
+    AlertDialog(
+        onDismissRequest = {},
+        title = { Text(text = "Congratulations!") },
+        text = { Text(text = "Your Score: $score") },
+        dismissButton = {
+            TextButton(onClick = {activity.finish()}) {
+                Text(text = "Exit")
+            }},
+        confirmButton = {
+            TextButton(onClick = onPlayAgain) {
+                Text(text = "Reset")
+            }
+        }
+    )
+}
+
 
 @Preview(showBackground = true)
 @Composable

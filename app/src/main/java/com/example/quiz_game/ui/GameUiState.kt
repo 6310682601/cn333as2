@@ -7,4 +7,5 @@ data class GameUiState(
     val choice: List<String>,
     val score: Int,
     val quizIndex: Int,
+    val isGameFinished: Boolean,
 )
