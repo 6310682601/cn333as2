@@ -28,7 +28,13 @@ class GameViewModel : ViewModel() {
 
 
     fun getQuestion(): Question {
-        return question
+        if (quizIndex != 9) {
+            quizIndex += 1
+            return question[quizIndex]
+        } else {
+            return question[quizIndex]
+        }
+
     }
 
     fun checkAnswer( input: String) {

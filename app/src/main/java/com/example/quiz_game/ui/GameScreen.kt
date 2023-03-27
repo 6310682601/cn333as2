@@ -32,10 +32,11 @@ fun GameScreen(
     gameViewModel: GameViewModel = viewModel(),
 ) {
     val gameUiState by gameViewModel.uiState.collectAsState()
-    val question = gameUiState.currentQuestion.toString()
+    val question = gameUiState.currentQuestion
     val choice = gameUiState.choice
     val score = gameUiState.score
     val count = gameUiState.quizIndex
+
 
     Column(
         Modifier
@@ -70,7 +71,7 @@ fun GameScreen(
         Spacer(modifier = Modifier.height(100.dp))
         Text(
             modifier = Modifier.fillMaxWidth().padding(25.dp),
-            text = question,
+            text = question.question,
             fontSize = 20.sp
         )
         Spacer(modifier = Modifier.height(100.dp))
