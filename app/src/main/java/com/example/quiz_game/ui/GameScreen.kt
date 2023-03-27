@@ -23,13 +23,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import com.example.quiz_game.ui.theme.Quiz_GameTheme
-import androidx.lifecycle.viewmodel.compose.viewModel
+//import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.quiz_game.data.questions
 
 @Composable
 fun GameScreen(
     modifier: Modifier = Modifier,
-    gameViewModel: GameViewModel = viewModel(),
+    gameViewModel: GameViewModel,
 ) {
     val gameUiState by gameViewModel.uiState.collectAsState()
     val question = gameUiState.currentQuestion
@@ -76,7 +76,8 @@ fun GameScreen(
         )
         Spacer(modifier = Modifier.height(100.dp))
         Button(
-            onClick = {gameViewModel.checkAnswer(choice[0])},
+            onClick = {gameViewModel.checkAnswer(choice[0])
+                gameViewModel.getQuestion()},
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp)
@@ -87,7 +88,8 @@ fun GameScreen(
             )
         }
         Button(
-            onClick = {gameViewModel.checkAnswer(choice[1])},
+            onClick = {gameViewModel.checkAnswer(choice[1])
+                gameViewModel.getQuestion()},
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp)
@@ -98,7 +100,8 @@ fun GameScreen(
             )
         }
         Button(
-            onClick = {gameViewModel.checkAnswer(choice[2])},
+            onClick = {gameViewModel.checkAnswer(choice[2])
+                gameViewModel.getQuestion()},
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp)
@@ -109,7 +112,8 @@ fun GameScreen(
             )
         }
         Button(
-            onClick = {gameViewModel.checkAnswer(choice[3])},
+            onClick = {gameViewModel.checkAnswer(choice[3])
+                gameViewModel.getQuestion()},
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp)

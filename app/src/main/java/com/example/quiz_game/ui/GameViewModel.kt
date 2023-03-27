@@ -27,21 +27,19 @@ class GameViewModel : ViewModel() {
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
 
 
-    fun getQuestion(): Question {
-        if (quizIndex != 9) {
+    fun getQuestion() {
+        if (quizIndex < 9) {
             quizIndex += 1
-            return question[quizIndex]
-        } else {
-            return question[quizIndex]
         }
-
+        val currentQuestion = question[quizIndex]
+        val choice = currentQuestion.choice.shuffled()
+        val newState = GameUiState(currentQuestion = currentQuestion, choice = choice, score = score, quizIndex = quizIndex)
+        _uiState.value = newState
     }
 
-    fun checkAnswer( input: String) {
+    fun checkAnswer(input: String) {
         if (input == question[quizIndex].answer) {
             score += 1
-        } else {
-            score += 0
         }
     }
 
